@@ -32,11 +32,16 @@ public class Menu {
                 String pair2=scanner.nextLine().toUpperCase();
                 System.out.println("ingrese la cantidad que quiere como resultado en numero entero:");
                 int amount = scanner.nextInt();
-                float result = opcion1(pair1,pair2,amount);
+                if (pair1.length()==3&&pair2.length()==3) {
+                    float result = opcion1(pair1,pair2,amount);
 
 
-                System.out.println(String.format("\n\n\nel resultado es: %f %s", result, pair2));
-                scanner.nextLine();
+                    System.out.println(String.format("\n\n\nel resultado es: %f %s", result, pair2));
+                    scanner.nextLine();
+                }else{
+                    System.out.println("digite divisas validas");
+                }
+               
 
 
             
