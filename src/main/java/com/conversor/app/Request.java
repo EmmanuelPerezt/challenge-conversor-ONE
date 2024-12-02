@@ -16,7 +16,7 @@ public class Request {
     
 
 
-        public static float request(String pair1, String pair2, int amount) throws IOException, InterruptedException{
+        public static float request(String pair1, String pair2, int amount)  {
             Dotenv dotenv = Dotenv.load();
             String apiKey = dotenv.get("api_key");
             //hacer peticion
@@ -25,15 +25,18 @@ public class Request {
             HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(url))
             .build();
-            HttpResponse<String> response = client
+            try {
+                HttpResponse<String> response = client
             .send(request, BodyHandlers.ofString()); 
             //parsear a un objeto
             String json= response.body();
             Gson gson =new Gson();
             Converter converter= gson.fromJson(json, Converter.class);
-
             
             return converter.getValue();
+            } catch (Exception e) {
+                return 0f;
+            }
         }
 
 
